@@ -12,8 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Center(
-            
+          child: ListTile(
+            title: Text('홍길동'),
+            subtitle: Text('010-0000-0000'),
+            leading: Icon(Icons.access_time),
+            trailing: Icon(Icons.call),
           ),
         ),
       )

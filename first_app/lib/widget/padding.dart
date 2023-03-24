@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(
-          child: Center(
-            
+          child: Padding(
+            padding: EdgeInsets.all(8),
+            child: Text('안녕하세요'),
           ),
         ),
       )
