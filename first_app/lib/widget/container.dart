@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
               color: Colors.indigo,         // 색
               border: Border.all(),           // 테두리
               borderRadius: BorderRadius.circular(24),    // 테두리 둥글게
-              gradient: LinearGradient(       // 그라데이션
+              gradient: const LinearGradient(       // 그라데이션
                 begin: Alignment.topLeft,     // 그라데이션 - 시작
                 end: Alignment.bottomRight,   // 그라데이션 - 끝
                 colors: [                     // 그라데이션 - 색
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
                   Colors.blue,
                 ]
               ),
-              boxShadow: [                    // 그림자
+              boxShadow: const [                    // 그림자
                 BoxShadow(
                   color: Colors.black12,    // 그림자 색
                   blurRadius: 4,              // 그림자 흐리게
