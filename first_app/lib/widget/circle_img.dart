@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               subtitle: Text('010-9000-8000'),
               trailing: Icon(Icons.call),
               leading: ClipOval(
-                child: Image.network('https://picsum/50/50')
+                child: Image.network('https://picsum.photos/50/50')
               ),
             ),
             ListTile(
