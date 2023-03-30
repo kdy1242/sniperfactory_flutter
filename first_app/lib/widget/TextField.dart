@@ -9,6 +9,10 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  void _handleOnChanged(String value) {
+    print(value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,9 +27,10 @@ class MyApp extends StatelessWidget {
             fillColor: Colors.black12,  // 배경 색
             filled: true, // TextField는 원래 투명하기 때문에 fillColor만 설정해주면 색상이 적용되지 않음. 같이 설정해주기
           ),
-          onChanged: (value) {
-            print(value);
-          },
+          // onChanged: (value) {
+          //   print(value);
+          // },
+          onChanged: _handleOnChanged,
         )
       )
     );
