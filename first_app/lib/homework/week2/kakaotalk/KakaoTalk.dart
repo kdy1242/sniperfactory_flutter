@@ -10,10 +10,10 @@ void main() {
 class Friend {
   String img;
   String name;
-  String message;
+  String? message;
   String? music;
 
-  Friend({required this.img, required this.name, required this.message, this.music});
+  Friend({required this.img, required this.name, this.message, this.music});
 }
 
 class MyApp extends StatelessWidget {
@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Friend> friends = [
       Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니', music: '똥밟았네'),
-      Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니', music: '똥밟았네'),
+      Friend(img: 'http://picsum.photos/48/48', name: '전여친'),
       Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니'),
-      Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니', music: '똥밟았네'),
+      Friend(img: 'http://picsum.photos/48/48', name: '전여친', music: '똥밟았네'),
       Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니', music: '똥밟았네'),
       Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니', music: '똥밟았네'),
       Friend(img: 'http://picsum.photos/48/48', name: '전여친', message: '똥차다음벤츠라더니'),
@@ -105,7 +105,8 @@ class MyApp extends StatelessWidget {
                     child: Image.network(friends[index].img),
                   ),
                   title: Text(friends[index].name, style: TextStyle(fontWeight: FontWeight.bold),),
-                  subtitle: Text(friends[index].message),
+                  // message 존재하면 trailing 보여주고 없으면 안보여주기
+                  subtitle: friends[index].message != null ? Text(friends[index].message!) : null,
                   // music이 존재하면 trailing 보여주고 없으면 안보여주기
                   trailing: friends[index].music != null ?
                     Container(
