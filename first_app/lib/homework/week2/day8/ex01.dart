@@ -23,8 +23,6 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
-  final TextEditingController xController = TextEditingController();
-  final TextEditingController yController = TextEditingController();
 
   int x = 0;
   int y = 0;
@@ -87,10 +85,6 @@ class _CalculatorState extends State<Calculator> {
   Widget button(BuildContext context, String operText) {
     return ElevatedButton(
       onPressed: () {
-        // if (xController.text.isEmpty || yController.text.isEmpty) {
-        //   showResultDialog(context, '값을 모두 입력하세요');
-        //   return;
-        // }
         setState(() {
           switch (operText) {
             case '더하기':
