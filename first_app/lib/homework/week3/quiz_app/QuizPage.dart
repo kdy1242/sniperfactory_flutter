@@ -13,7 +13,6 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  bool _isLastPage = false;
   var pageController = PageController(viewportFraction: 0.8);
 
   List<Widget> score = [];
@@ -83,12 +82,6 @@ class _QuizPageState extends State<QuizPage> {
             physics: NeverScrollableScrollPhysics(),
             controller: pageController,
             itemCount: quizs.length,
-            // 현재 페이지가 마지막 페이지인지 판별
-            onPageChanged: (int index) {
-              setState(() {
-                _isLastPage = index == quizs.length - 1;
-              });
-            },
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 15),
@@ -99,7 +92,7 @@ class _QuizPageState extends State<QuizPage> {
         ),
       ),
 
-      floatingActionButton: _isLastPage ? FloatingActionButton(
+      floatingActionButton: score.length >= quizs.length ? FloatingActionButton(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         child: Icon(Icons.restart_alt),
