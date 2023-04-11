@@ -15,25 +15,22 @@ class _QuizPageState extends State<QuizPage> {
 
   var pageController = PageController(viewportFraction: 0.8);
 
-  List<Widget> score = [];
-  // List<Widget> score = List<Widget>.filled(quizs.length, Icon(null));
+  List<Widget> score = List<Widget>.filled(quizs.length, Icon(null));
 
   // 버튼 눌렀을 때 정답인지 아닌지 판별하고, 판별 결과에 따라 appBar에 아이콘을 추가할 함수들
   void onCorrect() {
     setState(() {
       pageController.nextPage(duration: Duration(seconds: 2), curve: Curves.linear);
-      // int pageIndex = pageController.page!.toInt();
-      // score[pageIndex] = Icon(Icons.circle_outlined);
-      score.add(Icon(Icons.circle_outlined));
+      int pageIndex = pageController.page!.toInt();
+      score[pageIndex] = Icon(Icons.circle_outlined);
     });
   }
 
   void onIncorrect() {
     setState(() {
       pageController.nextPage(duration: Duration(seconds: 2), curve: Curves.linear);
-      // int pageIndex = pageController.page!.toInt();
-      // score[pageIndex] = Icon(Icons.close);
-      score.add(Icon(Icons.close));
+      int pageIndex = pageController.page!.toInt();
+      score[pageIndex] = Icon(Icons.close);
     });
   }
 
@@ -92,14 +89,14 @@ class _QuizPageState extends State<QuizPage> {
         ),
       ),
 
-      floatingActionButton: score.length >= quizs.length ? FloatingActionButton(
+      floatingActionButton: score.last != Icon(null) ? FloatingActionButton(
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         child: Icon(Icons.restart_alt),
         onPressed: () {
           setState(() {
             pageController.jumpTo(0);
-            score.clear();
+            score = List<Widget>.filled(quizs.length, Icon(null));
           });
         },
       ) : null,
