@@ -15,7 +15,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var dio = Dio();
-  var url = 'https://sniperfactory.com/sfac/http_test';
 
   @override
   Widget build(BuildContext context) {
