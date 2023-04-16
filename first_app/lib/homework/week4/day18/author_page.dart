@@ -26,14 +26,14 @@ class _AuthorPageState extends State<AuthorPage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return GridView.builder(
-              itemCount: snapshot.data?.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
                 return Container(
                   child: Column(
                     children: [
                       Flexible(
                         child: ZoomIn(
-                          child: snapshot.data!.first.avatar != null
+                          child: snapshot.data![index].avatar != null
                               ? Image.network(snapshot.data![index].avatar!)
                               : Image.asset('assets/images/secret_hamburger/main-icon.png'),
                         ),

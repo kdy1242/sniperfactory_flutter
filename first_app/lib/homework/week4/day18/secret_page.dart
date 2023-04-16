@@ -38,7 +38,7 @@ class _SecretPageState extends State<SecretPage> {
                   builder: (context, snapshot) {
                     if(snapshot.connectionState == ConnectionState.done) {
                       return PageView.builder(
-                        itemCount: snapshot.data?.length,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           var author = snapshot.data![index].author ?? '익명';
                           return Padding(
