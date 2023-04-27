@@ -33,82 +33,65 @@ class _MailItemState extends State<MailItem> {
 
     String sendDate = dateText(widget.email.sendDate);
 
-    return Dismissible(
-      key: UniqueKey(),
-      background: Container(
-        color: Colors.red,
-        alignment: Alignment.centerRight,
-        padding: const EdgeInsets.all(8.0),
-
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
+      child: Container(
+        color: Colors.white,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Icon(Icons.delete_outline, color: Colors.white,),
-        ),
-      ),
-      onDismissed: (direction) {
-        widget.email.isDeleted = true;
-        print('${widget.email} : ${widget.email.isDeleted}');
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
-        child: Container(
-          color: Colors.white,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 8,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.green,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Text(widget.email.from, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                  ),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: Text(sendDate),
+                  ),
+                  Icon(Icons.star, color: Colors.grey,)
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Row(
                   children: [
                     Container(
-                      width: 8,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.green,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+                        child: Text('TO', style: TextStyle(color: Colors.white, fontSize: 14),),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(widget.email.from, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                      child: Text(widget.email.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,),
                     ),
-                    Spacer(),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: Text(sendDate),
-                    ),
-                    Icon(Icons.star, color: Colors.grey,)
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-                          child: Text('TO', style: TextStyle(color: Colors.white, fontSize: 14),),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(widget.email.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 1,),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, top: 8, bottom: 16, right: 8),
-                  child: Text(widget.email.detail, style: TextStyle(fontSize: 18, color: Colors.grey),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,),
-                ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0, top: 8, bottom: 16, right: 8),
+                child: Text(widget.email.detail, style: TextStyle(fontSize: 18, color: Colors.grey),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,),
+              ),
+            ],
           ),
         ),
       ),

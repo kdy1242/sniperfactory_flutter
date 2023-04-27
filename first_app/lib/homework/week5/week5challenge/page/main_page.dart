@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,9 @@ class _MailPageState extends State<MailPage> {
   RefreshController refreshController = RefreshController(initialRefresh: false);
   ScrollController scrollController = ScrollController();
 
-  List<Email> emails = [];
-  List<Email> deletedEmails = [];
+  List<Email> allEmails = [];        // 모든 메일 리스트
+  List<Email> deletedEmails = [];    // 삭제된 메일 리스트
+  List<Email> notDeletedEmails = []; // 삭제되지 않은 메일 리스트
   bool isSortAscending = false;
 
   @override
@@ -35,21 +37,8 @@ class _MailPageState extends State<MailPage> {
   void getData() async {
     final res = await dio.get('https://sfacassignmentchallenge-default-rtdb.europe-west1.firebasedatabase.app/.json');
     List<dynamic> emailList = res.data['emails'];
-    setState(() {
-      emails = emailList.map((e) => Email.fromMap(e)).toList();
-      getDeletedEmails(emails);
-    });
-  }
-
-  // 삭제된 메일 리스트 만들기
-  void getDeletedEmails(List<Email> emails) {
-    for (var email in emails) {
-      if (email.isDeleted) {
-        deletedEmails.add(email);
-      }
-    }
-    print(deletedEmails.toString());
-    print('test');
+    allEmails = emailList.map((e) => Email.fromMap(e)).toList();
+    notDeletedEmails = allEmails;
   }
 
   // 새로고침
@@ -62,7 +51,7 @@ class _MailPageState extends State<MailPage> {
   void sortEmails() {
     setState(() {
       isSortAscending = !isSortAscending;
-      emails.sort((a, b) {
+      notDeletedEmails.sort((a, b) {
         if (isSortAscending) {
           return a.sendDate.compareTo(b.sendDate);
         } else {
@@ -91,7 +80,7 @@ class _MailPageState extends State<MailPage> {
                   backgroundColor: Colors.green,
                 ),
               ),
-              Text(' ${emails.length}', style: TextStyle(color: Colors.green),),
+              Text(' ${notDeletedEmails.length}', style: TextStyle(color: Colors.green),),
             ],
           ),
           onTap: () {
@@ -114,6 +103,9 @@ class _MailPageState extends State<MailPage> {
         future: dio.get('https://sfacassignmentchallenge-default-rtdb.europe-west1.firebasedatabase.app/.json'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
+            log('deleted: $deletedEmails');
+            log('notDeleted: $notDeletedEmails');
+            log('all: $allEmails');
             return SmartRefresher(
               controller: refreshController,
               enablePullDown: true,
@@ -121,7 +113,7 @@ class _MailPageState extends State<MailPage> {
               header: WaterDropHeader(),
               child: ListView.builder(
                 controller: scrollController,
-                itemCount: emails.length + 1,
+                itemCount: notDeletedEmails.length + 1,
                 itemBuilder: (context, index) {
                   // 검색
                   if (index == 0) {
@@ -144,15 +136,34 @@ class _MailPageState extends State<MailPage> {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const SearchPage()),
+                            MaterialPageRoute(builder: (context) => SearchPage(emailList: notDeletedEmails)),
                           );
                         },
                       ),
                     );
                   }
-                  Email email = emails[index-1];
+                  Email email = notDeletedEmails[index-1];
                   print(email);
-                  return MailItem(email: email);
+                  return Dismissible(
+                      key: UniqueKey(),
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.all(8.0),
+
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          child: Icon(Icons.delete_outline, color: Colors.white,),
+                        ),
+                      ),
+                      onDismissed: (direction) {
+                        email.isDeleted = true;
+                        print('${email} : ${email.isDeleted}');
+                        deletedEmails.add(email);
+                        notDeletedEmails = allEmails.where((email) => !email.isDeleted).toList();
+                      },
+                    child: MailItem(email: email)
+                  );
                 }
               ),
             );
@@ -169,6 +180,9 @@ class _MailPageState extends State<MailPage> {
             context,
             MaterialPageRoute(builder: (context) => BinPage(deletedEmails: deletedEmails)),
           );
+          log('$deletedEmails');
+          log('$notDeletedEmails');
+          log('$allEmails');
         },
       ),
     );
