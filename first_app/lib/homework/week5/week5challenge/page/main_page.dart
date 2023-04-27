@@ -180,9 +180,6 @@ class _MailPageState extends State<MailPage> {
             context,
             MaterialPageRoute(builder: (context) => BinPage(deletedEmails: deletedEmails)),
           );
-          log('$deletedEmails');
-          log('$notDeletedEmails');
-          log('$allEmails');
         },
       ),
     );
