@@ -57,6 +57,7 @@ dependencies:
   cached_network_image: ^3.2.3
   shared_preferences: ^2.1.0
   flutter_speed_dial: ^6.2.0      # fab
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
