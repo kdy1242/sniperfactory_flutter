@@ -1,10 +1,10 @@
 
 import 'package:get/get.dart';
-import '../controller/login_controller.dart';
 
 import '../page/main_page.dart';
 import '../page/login_page.dart';
 import '../util/routes.dart';
+import '../controller/login_controller.dart';
 
 class AppPages {
   static final pages = [

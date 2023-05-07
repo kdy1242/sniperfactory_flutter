@@ -1,5 +1,5 @@
 
-import 'package:first_app/Flutter/GetX/PageController/controller/login_controller.dart';
+import 'package:first_app/Flutter/GetX/Controller/PageController/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
 
-import 'package:first_app/Flutter/GetX/GetxController/controller/app_global_data_controller.dart';
+import 'package:first_app/Flutter/GetX/Controller/GetxController/controller/app_global_data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
