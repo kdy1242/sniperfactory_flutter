@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../controller/auth_controller.dart';
 import '../widget/burgers.dart';
+import '../widget/logout_dialog.dart';
 
 class SettingPage extends StatelessWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -45,7 +46,9 @@ class SettingPage extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.logout),
                 title: Text('로그아웃하기'),
-                onTap: controller.logout,
+                onTap: () {
+                  Get.dialog(LogoutDialog());
+                },
               ),
             ],
           ),
