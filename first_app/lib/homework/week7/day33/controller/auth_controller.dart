@@ -48,8 +48,11 @@ class AuthController extends GetxController {
           'username': username,
         }
       );
+      Get.snackbar('회원가입 성공~', '환영합니다');
+      Get.back();
     } on DioError catch(e) {
       print(e.message);
+      Get.snackbar('회원가입 실패', '환영할뻔');
     }
   }
 
