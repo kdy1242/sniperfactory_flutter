@@ -1,6 +1,7 @@
 
-import 'main_page.dart';
 import 'package:flutter/material.dart';
+
+import 'login_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
       Duration(seconds: 3), // 3초 동안 Splash Screen 표시
           () => Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainPage()),
+        MaterialPageRoute(builder: (context) => LoginPage()),
       ),
     );
   }

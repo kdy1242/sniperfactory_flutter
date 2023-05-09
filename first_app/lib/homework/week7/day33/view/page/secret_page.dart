@@ -12,6 +12,7 @@ class SecretPage extends GetView<SecretController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -31,6 +32,10 @@ class SecretPage extends GetView<SecretController> {
             SizedBox(height: 50),
             Expanded(
               child: Obx(() => PageView.builder(
+                controller: controller.pageController,
+                  onPageChanged: (int index) {
+                    controller.currentPageIndex = index;
+                  },
                 itemCount: controller.secrets.length,
                 itemBuilder: (context, index) {
                   var secret = controller.secrets[index];
@@ -64,7 +69,14 @@ class SecretPage extends GetView<SecretController> {
                 }
               )),
             ),
-            Text('먹을게~', style: TextStyle(fontSize: 20),),
+            Obx(() => Text(
+              controller.isPageChanging.value
+                  ? controller.pageController.page!.toInt() > controller.currentPageIndex
+                    ? '먹을게!!!!!'  // 안뜸
+                    : '냠냠'
+                  : '짜잔',
+              style: TextStyle(fontSize: 20),
+            )),
             SizedBox(height: 30,)
           ],
         ),

@@ -8,7 +8,7 @@ import 'controller/sign_up_controller.dart';
 import 'controller/secret_controller.dart';
 import 'controller/upload_controller.dart';
 import 'util/pages.dart';
-import 'view/page/login_page.dart';
+import 'view/page/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           Get.lazyPut(() => UploadController(), fenix: true);
         }),
       getPages: AppPages.pages,
-      home: LoginPage()
+      home: SplashPage()
     );
   }
 }
