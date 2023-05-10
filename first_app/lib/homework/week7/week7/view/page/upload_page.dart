@@ -66,6 +66,17 @@ class UploadPage extends GetView<UploadController> {
                   child: Text('비밀 등록'),
                 ),
               ),
+              Row(
+                children: [
+                  Obx(() => Checkbox(
+                    value: controller.showName.value,
+                    onChanged: (value) {
+                      controller.showName(value!);
+                    }
+                  )),
+                  Text('이름 공개하기'),
+                ],
+              ),
               Spacer()
             ],
           ),

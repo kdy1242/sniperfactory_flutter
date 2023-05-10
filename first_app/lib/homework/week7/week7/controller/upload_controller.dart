@@ -9,6 +9,7 @@ import 'auth_controller.dart';
 class UploadController extends GetxController {
   TextEditingController secretController = TextEditingController();
   Dio dio = Dio();
+  RxBool showName = false.obs;
 
   RxString hamText = '진짜\n나만 알고\n잇을게'.obs;
 
@@ -16,7 +17,6 @@ class UploadController extends GetxController {
 
   upload() async {
     dio.options.baseUrl = ApiRoutes.baseUrl;
-
     if (secretController.text == '') return;
 
     try {
@@ -25,7 +25,7 @@ class UploadController extends GetxController {
         data: {
           'secret': secretController.text,
           'author': user!.id,
-          'authorName': user!.username,
+          'authorName': showName.value ? user!.username : '',
         }
       );
       if (res.statusCode == 200) {
