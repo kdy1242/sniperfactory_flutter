@@ -5,18 +5,17 @@ import 'package:get/get.dart';
 
 import '../model/secret.dart';
 import '../util/api_routes.dart';
+import '../util/custom_dio.dart';
 
 class SecretController extends GetxController {
   RxList<Secret> secrets = RxList();
-  Dio dio = Dio();
+  Dio dio = CustomDio().dio;
 
   PageController pageController = PageController();
   RxBool isPageChanging = false.obs;
   int currentPageIndex = 0;
 
   readSecrets() async {
-    dio.options.baseUrl = ApiRoutes.baseUrl;
-
     try {
       var res = await dio.get(ApiRoutes.readSecret);
       if (res.statusCode == 200) {

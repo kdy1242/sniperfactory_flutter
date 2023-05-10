@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../util/api_routes.dart';
+import '../util/custom_dio.dart';
 import 'auth_controller.dart';
 
 class UploadController extends GetxController {
   TextEditingController secretController = TextEditingController();
-  Dio dio = Dio();
+  Dio dio = CustomDio().dio;
   RxBool showName = false.obs;
 
   RxString hamText = '진짜\n나만 알고\n잇을게'.obs;
@@ -16,7 +17,6 @@ class UploadController extends GetxController {
   var user = Get.find<AuthController>().user;
 
   upload() async {
-    dio.options.baseUrl = ApiRoutes.baseUrl;
     if (secretController.text == '') return;
 
     try {

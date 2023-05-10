@@ -6,16 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../model/user.dart';
 import '../util/app_routes.dart';
 import '../util/api_routes.dart';
+import '../util/custom_dio.dart';
 
 class AuthController extends GetxController {
   final Rxn<User> _user = Rxn();
   String? _token;
-  Dio dio = Dio();
+  Dio dio = CustomDio().dio;
 
   User? get user => _user.value;
 
   login(String id, String pw, bool saveToken) async {
-    dio.options.baseUrl = ApiRoutes.baseUrl;
 
     try {
       var res = await dio.post(
@@ -39,7 +39,6 @@ class AuthController extends GetxController {
   }
 
   signUp(String email, String password, String passwordConfirm, String username) async {
-    dio.options.baseUrl = ApiRoutes.baseUrl;
 
     try {
       await dio.post(
