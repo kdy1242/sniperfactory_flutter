@@ -58,6 +58,7 @@ dependencies:
   shared_preferences: ^2.1.0
   flutter_speed_dial: ^6.2.0      # fab
   get: ^4.6.5
+  firebase_core: ^2.11.0
 
 dev_dependencies:
   flutter_test:

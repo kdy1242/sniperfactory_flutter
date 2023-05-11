@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "772574240843",
+    "project_id": "sfac-test-8ad00",
+    "storage_bucket": "sfac-test-8ad00.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772574240843:android:524fda2f7f55acfac36dce",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772574240843-tstihf6kqsnn4n8e8q5db5eu6mfqu5rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA96Wg6lwF60j9mWpOm0agRI5sRUFW-8nI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772574240843-tstihf6kqsnn4n8e8q5db5eu6mfqu5rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
