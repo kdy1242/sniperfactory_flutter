@@ -60,6 +60,8 @@ dependencies:
   get: ^4.6.5
   firebase_core: ^2.11.0
   cloud_firestore: ^4.6.0
+  firebase_auth: ^4.6.0
+
 
 dev_dependencies:
   flutter_test:
